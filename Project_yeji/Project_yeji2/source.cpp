@@ -29,6 +29,7 @@ that tells how many same-sum partitions can be made from the set {V1, V2, ..., V
 and another single line with one such partition.
 The output should be 0 if there are no ways to make a same-sum partition.
 
+example result:
 Input (standard/console input)
 3
 1 2 3
