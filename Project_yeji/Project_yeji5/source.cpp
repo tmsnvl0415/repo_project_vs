@@ -147,10 +147,10 @@ int bfs() {
 					continue;
 				}
 
-				//O에 근접하지도 않고, 이동하지 않았을 경우(막혀서) - 필요없는 경우의 수 줄임
+				//O에 근접하지도 않고 이동하지 않았을 경우 필요없는 경우의 수 줄임
 				else if (nr == make_pair(ry, rx) && nb == make_pair(by, bx))continue;
 
-				//겹쳤을 때: 기울인 방향과 이전 좌표를 비교해서 떨어뜨림
+				//겹쳤을 때 기울인 방향과 이전 좌표를 비교해서 떨어뜨림
 				else if (nr == nb) {
 					switch (d)
 					{
