@@ -18,19 +18,19 @@ If the number of same-sum partitions is larger than ULONG_MAX (232-1),
 your program may just print ¡°NUMEROUS\n¡± as the number.
 Note that each integer element in the set is larger than or equal to 1 and it is less than or equal to 500.
 
-Standard/Console Input
+Input
 The input contains a series of double lines with a single integer 
 representing N in the first line and sorted elements of N distinct positive integers in the next line, as above.
 ¡°0\n¡± means the end of input.
 
-Standard/Console Output
+Output
 For each input, the output consists of a single line with a single integer 
 that tells how many same-sum partitions can be made from the set {V1, V2, ..., VN}, 
 and another single line with one such partition.
 The output should be 0 if there are no ways to make a same-sum partition.
 
 example result:
-Input (standard/console input)
+Input 
 3
 1 2 3
 7
@@ -38,7 +38,7 @@ Input (standard/console input)
 12
 1 2 3 4 5 6 7 8 9 10 11 12
 0                                          the end of input
-Output (standard/console output)
+Output 
 1
 {1,2},{3}                                  different answer is possible
 4
@@ -46,6 +46,7 @@ Output (standard/console output)
 62
 {1,2,3,4,5,6,8,10},{7,9,11,12}      
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>

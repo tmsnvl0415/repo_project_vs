@@ -14,13 +14,13 @@ Note that the positive integer n is less than or equal to 10.
 If there are more than one solution, print one of them. If there is no solution, print “no solution.\n”.
 
 example result:
-Input (standard/console input)
+Input 
 4                                  n
 O O O O                          final state
 O O O O
 O O O O
 O O O O
-Output (standard/console output)
+Output 
 O # # O                          switches to push
 # # # #
 # O O #
