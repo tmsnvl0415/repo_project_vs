@@ -54,6 +54,8 @@ using namespace std;
 
 #define MAX 10
 
+bool valid_xy(int x, int y);
+
 int N, M, K;
 int A[MAX][MAX];			//매년 더해지는 양분
 int nutri[MAX][MAX];		//지금 있는 양분
@@ -62,12 +64,7 @@ vector<int>tree[MAX][MAX];
 int dx[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
 int dy[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
 
-bool valid_xy(int x, int y) 
-{
-	return x < N && y < N && x >= 0 && y >= 0;
-}
-
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
 	cin >> N >> M >> K;
 	for (size_t i = 0; i < N; i++)
@@ -75,8 +72,8 @@ int main(int argc, char **argv)
 		for (size_t j = 0; j < N; j++)
 		{
 			cin >> A[i][j];
-			nutri[i][j] = 5;	
-			tree[i][j].clear();	
+			nutri[i][j] = 5;
+			tree[i][j].clear();
 		}
 	}
 	for (size_t i = 0; i < M; i++)
@@ -87,7 +84,7 @@ int main(int argc, char **argv)
 		x--;
 		tree[y][x].push_back(age);
 	}
-	
+
 	int year = 0;
 	while (year != K)
 	{
@@ -100,7 +97,7 @@ int main(int argc, char **argv)
 				int die_num = -1;		// 죽어야할 나무들의 최초 순번
 				for (size_t k = 0; k < tree_num; k++)
 				{
-					if (nutri[i][j] < tree[i][j][k]) 
+					if (nutri[i][j] < tree[i][j][k])
 					{
 						die_num = k;
 						break;
@@ -108,7 +105,7 @@ int main(int argc, char **argv)
 					nutri[i][j] -= tree[i][j][k];
 				}
 				// 죽는 나무가 있는 경우
-				if (die_num != -1) 
+				if (die_num != -1)
 				{
 					int die_tree_numbers = tree_num - die_num; // 죽는 나무 개수.
 					for (size_t k = 0; k < die_tree_numbers; k++)
@@ -135,7 +132,7 @@ int main(int argc, char **argv)
 				for (size_t k = 0; k < tree_num; k++)
 				{
 					if (tree[i][j][k] % 5 == 0) // 5의 배수 인 경우
-					{	
+					{
 						for (size_t l = 0; l < 8; l++)
 						{
 							int nx = j + dx[l];
@@ -168,7 +165,7 @@ int main(int argc, char **argv)
 		}
 		year++;
 	}
-	
+
 	int sum_of_trees = 0;
 	for (size_t i = 0; i < N; i++)
 	{
@@ -180,6 +177,13 @@ int main(int argc, char **argv)
 	cout << sum_of_trees;
 	return 0;
 }
+
+bool valid_xy(int x, int y) 
+{
+	return x < N && y < N && x >= 0 && y >= 0;
+}
+
+
 
 
 

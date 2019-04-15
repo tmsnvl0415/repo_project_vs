@@ -34,6 +34,9 @@ output
 using namespace std;
 
 #define MAX 10
+
+int bfs();
+
 int N, M;
 char map[MAX][MAX];
 int Ry, Rx, By, Bx;
@@ -41,7 +44,8 @@ int Hy, Hx;
 int dy[] = { -1,0,1,0 };
 int dx[] = { 0,1,0,-1 };
 
-//빨간 구슬, 파란 구슬의 위치 및 경과시간 저장하는 구조체
+
+//구슬의 위치, 경과시간 저장
 typedef struct _bead {
 	int ry, rx, by, bx;
 	int c;
@@ -74,6 +78,36 @@ pair<int, int>move(int dir, int y, int x) {
 	return make_pair(ny, nx);
 }
 
+int main() {
+	int rst = 0;
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			cin >> map[i][j];
+			//빨간 구슬 위치 저장
+			if (map[i][j] == 'R') {
+				Ry = i;
+				Rx = j;
+			}
+			//파란 구슬 위치 저장
+			else if (map[i][j] == 'B') {
+				By = i;
+				Bx = j;
+			}
+			//구멍 위치 저장
+			else if (map[i][j] == 'O') {
+				Hy = i;
+				Hx = j;
+			}
+		}
+	}
+
+	rst = bfs();
+	cout << rst << endl;
+
+	return 0;
+}
+
 int bfs() {
 	queue<bead>q;
 	bead start;
@@ -83,8 +117,7 @@ int bfs() {
 	start.bx = Bx;
 	start.c = 0;
 	q.push(start);
-	int mi = 100;	//이동 횟수(시간)의 최소 값 저장하는 변수
-
+	int mi = 100;	//이동 시간의 최소 값 저장하는 변수
 
 	while (!q.empty()) {
 		int size = q.size();
@@ -113,13 +146,11 @@ int bfs() {
 					mi = min(mi, nc);
 					continue;
 				}
-				// -> 바로 리턴하지 않는 이유: 다른 경우의 수도 살펴야 한다!
 
-
-				//O에 근접하지도 않고, 이동하지 않았을 경우(막혀서) - 필요없는 경우의 수 줄이기
+				//O에 근접하지도 않고, 이동하지 않았을 경우(막혀서) - 필요없는 경우의 수 줄임
 				else if (nr == make_pair(ry, rx) && nb == make_pair(by, bx))continue;
 
-				//겹쳤을 때: 기울인 방향과 이전 좌표를 비교해서 떨어뜨린다.
+				//겹쳤을 때: 기울인 방향과 이전 좌표를 비교해서 떨어뜨림
 				else if (nr == nb) {
 					switch (d)
 					{
@@ -154,36 +185,6 @@ int bfs() {
 		return mi;
 	else
 		return -1;
-}
-
-int main() {
-	int rst = 0;
-	cin >> N >> M;
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			cin >> map[i][j];
-			//빨간 구슬 위치 저장
-			if (map[i][j] == 'R') {
-				Ry = i;
-				Rx = j;
-			}
-			//파란 구슬 위치 저장
-			else if (map[i][j] == 'B') {
-				By = i;
-				Bx = j;
-			}
-			//구멍 위치 저장
-			else if (map[i][j] == 'O') {
-				Hy = i;
-				Hx = j;
-			}
-		}
-	}
-
-	rst = bfs();
-	cout << rst << endl;
-
-	return 0;
 }
 
 
