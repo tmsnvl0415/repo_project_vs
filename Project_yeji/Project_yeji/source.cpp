@@ -38,15 +38,15 @@ output :
 #include <queue>
 using namespace std;
 
-#define MAX_NUM 52
+#define MAX 52
 
-int map[MAX_NUM][MAX_NUM];
+int map[MAX][MAX];
 int N, M;
 int x, y, dir;
 int ret = 0;
 bool flag = 0;
 
-void solve(int cnt) {
+void solution(int cnt) {
 	if (flag == 1) return;
 
 	int nextY = y;
@@ -67,7 +67,7 @@ void solve(int cnt) {
 		else {
 			y = nextY;
 			x = nextX;
-			solve(0);
+			solution(0);
 			return;
 		}
 	}
@@ -91,13 +91,13 @@ void solve(int cnt) {
 	if (map[nextY][nextX] == 0) {
 		y = nextY;
 		x = nextX;
-		solve(0);
+		solution(0);
 		return;
 	}
 
 	//왼쪽 방향에 청소할 방향이 없다면 그 방향으로 회전하고 2번으로 돌아감
 	else {
-		solve(cnt + 1);
+		solution(cnt + 1);
 		return;
 	}
 
@@ -116,7 +116,7 @@ int main()
 		}
 	}
 
-	solve(0);
+	solution(0);
 
 	cout << ret;
 
